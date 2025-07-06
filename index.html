@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Monseñor Rafael Chacín Soto</title>
+  <link rel="stylesheet" href="estilos.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  
+  <style>
+    /* Parte 1: Estilos del botón y menú lateral */
+    #boton-menu {
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      z-index: 1100;
+      cursor: pointer;
+      color: #333;
+    }
+
+    .menu-lateral {
+      transition: transform 0.3s ease-in-out;
+      transform: translateX(-100%);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 250px;
+      height: 100%;
+      background-color: #fff;
+      z-index: 1000;
+    }
+
+    .menu-lateral.visible {
+      transform: translateX(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Parte 2: Botón para mostrar/ocultar menú -->
+  <button id="boton-menu" aria-label="Abrir menú">
+    <i class="fas fa-bars"></i>
+  </button>
+
+  <!-- Parte 3: Encabezado principal -->
+  <header>
+    <h1 id="título">
+      <i class="fas fa-university" aria-hidden="true"></i> Monseñor Rafael Chacín Soto
+    </h1>
+  </header>
+
+  <!-- Parte 4: Menú lateral con submenús -->
+  <nav class="menu-lateral">
+    <ul class="menu">
+      <li class="desplegable">
+        <a href="#"><i class="fas fa-home"></i> Inicio</a>
+        <ul class="submenu">
+          <li><a href="#"><i class="fas fa-globe"></i> Presentación del sitio</a></li>
+          <li><a href="#"><i class="fas fa-newspaper"></i> Noticias o novedades</a></li>
+        </ul>
+      </li>
+      <li class="desplegable">
+        <a href="#"><i class="fas fa-university"></i> Institución</a>
+        <ul class="submenu">
+          <li><a href="#"><i class="fas fa-user"></i> Vida y obra</a></li>
+          <li><a href="#"><i class="fab fa-facebook"></i> Redes</a></li>
+          <li><a href="#"><i class="fas fa-user-tie"></i> Autoridades</a></li>
+          <li><a href="#"><i class="fas fa-bullseye"></i> Misión y visión</a></li>
+        </ul>
+      </li>
+      <li class="desplegable">
+        <a href="#"><i class="fas fa-book"></i> Académico</a>
+        <ul class="submenu">
+          <li><a href="#"><i class="fas fa-graduation-cap"></i> Oportunidades de estudio</a></li>
+          <li><a href="#"><i class="fas fa-users"></i> Coordinación</a></li>
+          <li><a href="#"><i class="fas fa-chalkboard"></i> Materias académicas</a></li>
+        </ul>
+      </li>
+      <li class="desplegable">
+        <a href="#"><i class="fas fa-palette"></i> Actividades</a>
+        <ul class="submenu">
+          <li><a href="#"><i class="fas fa-theater-masks"></i> Arte y cultura</a></li>
+          <li><a href="#"><i class="fas fa-futbol"></i> Deportes</a></li>
+        </ul>
+      </li>
+      <li class="desplegable">
+        <a href="#"><i class="fas fa-envelope"></i> Contacto</a>
+        <ul class="submenu">
+          <li><a href="#"><i class="fas fa-map-marker-alt"></i> Ubicación geográfica</a></li>
+          <li><a href="#"><i class="fab fa-whatsapp"></i> WhatsApp / Correo</a></li>
+        </ul>
+      </li>
+      <li class="desplegable">
+        <a href="#"><i class="fas fa-cog"></i> Configuración</a>
+        <ul class="submenu">
+          <li><a href="#" onclick="mostrarFormulario();"><i class="fas fa-user-lock"></i> Acceso exclusivo</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Parte 5: Contenido principal -->
+  <main class="contenido">
+
+    <!-- Parte 5.1: Formulario de acceso -->
+    <section id="formulario-acceso" class="formulario" style="display: none;">
+      <h2>🔐 Acceso exclusivo</h2>
+      <form onsubmit="verificarUsuario(); return false;">
+        <label for="usuario">Nombre autorizado:</label>
+        <input type="text" id="usuario" placeholder="Ingresa tu nombre..." required />
+        <button type="submit">Acceder</button>
+      </form>
+    </section>
+
+    <!-- Parte 5.2: Mensaje para usuarios especiales -->
+    <section id="contenido-especial" class="contenido-especial" style="display: none;">
+      <h3>🎉 Bienvenido</h3>
+      <p>Este contenido está reservado para usuarios especiales. ¡Gracias por formar parte del legado!</p>
+    </section>
+
+    <!-- Parte 5.3: Editor para agregar ítems -->
+    <section id="editor-menu" class="editor" style="display: none;">
+      <h3>📝 Editor de menú</h3>
+      <form id="form-edicion">
+        <label for="nuevoItem">Texto del nuevo ítem:</label>
+        <input type="text" id="nuevoItem" placeholder="Ejemplo: Contenido de cultura" required />
+
+        <label for="iconoItem">Ícono Font Awesome:</label>
+        <input type="text" id="iconoItem" placeholder="Ejemplo: fa-scroll" required />
+
+        <label for="categoriaItem">Categoría de menú:</label>
+        <select id="categoriaItem">
+          <option value="Inicio">Inicio</option>
+          <option value="Institución">Institución</option>
+          <option value="Académico">Académico</option>
+          <option value="Actividades">Actividades</option>
+          <option value="Contacto">Contacto</option>
+        </select>
+
+        <button type="submit">➕ Agregar al menú</button>
+      </form>
+    </section>
+  </main>
+
+<!-- Parte 6: Script para interacción del menú -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Obtener referencias al botón y al menú
+    const botonMenu = document.getElementById("boton-menu");
+    const menuLateral = document.querySelector(".menu-lateral");
+
+    // Evento de clic para mostrar u ocultar el menú lateral
+    botonMenu.addEventListener("click", () => {
+      menuLateral.classList.toggle("visible");
+    });
+  });
+</script>
+
+<!-- Parte 7: Script externo -->
+<script src="funcion.js"></script>
+</body>
+</html>

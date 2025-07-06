@@ -1,0 +1,106 @@
+/* General */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f3f3f3;
+}
+
+/* Encabezado */
+header {
+  background-color: #2c3e50;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+#título {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+/* Menú lateral */
+.menu-lateral {
+  background-color: #ffffff;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  padding: 1rem 0;
+}
+
+.menu > li {
+  list-style: none;
+  border-bottom: 1px solid #eee;
+}
+
+.menu a {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.menu a:hover {
+  background-color: #ecf0f1;
+}
+
+/* Submenús */
+.submenu {
+  display: none;
+  padding-left: 1rem;
+}
+
+.desplegable:hover .submenu {
+  display: block;
+}
+
+.submenu a {
+  font-weight: normal;
+  color: #555;
+}
+
+/* Contenido principal */
+main.contenido {
+  margin-left: 260px;
+  padding: 2rem;
+}
+
+/* Formularios */
+.formulario,
+.editor {
+  background: #fff;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+form input,
+form select,
+form button {
+  display: block;
+  margin: 0.8rem 0;
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form button {
+  background-color: #2980b9;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+form button:hover {
+  background-color: #3498db;
+}
+
+/* Secciones especiales */
+.contenido-especial h3 {
+  color: #2c3e50;
+}
+
+.contenido-especial p {
+  font-style: italic;
+}
